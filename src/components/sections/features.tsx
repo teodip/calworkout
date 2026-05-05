@@ -1,4 +1,5 @@
 import { Hammer, Truck, ShieldCheck, Wrench } from "lucide-react";
+import { Reveal } from "@/components/reveal";
 
 const features = [
   {
@@ -31,20 +32,23 @@ export function Features() {
   return (
     <section className="border-t border-border/60 bg-background">
       <div className="mx-auto max-w-7xl px-6 py-24">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-          <h2 className="text-balance text-4xl md:text-5xl font-semibold tracking-tight max-w-2xl">
-            One purchase. A lifetime of training.
-          </h2>
-          <p className="max-w-md text-muted-foreground">
-            We build one product, and we build it the way it should be built. No
-            seasonal SKUs, no plastic, no compromise.
-          </p>
-        </div>
+        <Reveal>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <h2 className="text-balance text-4xl md:text-5xl font-semibold tracking-tight max-w-2xl">
+              One purchase. A lifetime of training.
+            </h2>
+            <p className="max-w-md text-muted-foreground">
+              We build one product, and we build it the way it should be built.
+              No seasonal SKUs, no plastic, no compromise.
+            </p>
+          </div>
+        </Reveal>
 
         <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-2 lg:grid-cols-4">
-          {features.map((f) => (
-            <div
+          {features.map((f, i) => (
+            <Reveal
               key={f.title}
+              delay={i * 0.08}
               className="bg-background p-8 transition-colors hover:bg-muted/40"
             >
               <f.icon className="h-6 w-6 text-accent" strokeWidth={1.5} />
@@ -54,7 +58,7 @@ export function Features() {
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
                 {f.body}
               </p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

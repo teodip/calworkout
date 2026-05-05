@@ -1,3 +1,5 @@
+import { Reveal } from "@/components/reveal";
+
 const steps = [
   {
     n: "01",
@@ -29,19 +31,23 @@ export function Install() {
   return (
     <section id="install" className="border-t border-border/60 bg-background">
       <div className="mx-auto max-w-7xl px-6 py-24">
-        <div className="max-w-2xl">
-          <div className="text-xs uppercase tracking-widest text-muted-foreground">
-            Install
+        <Reveal>
+          <div className="max-w-2xl">
+            <div className="text-xs uppercase tracking-widest text-muted-foreground">
+              Install
+            </div>
+            <h2 className="mt-3 text-balance text-4xl md:text-5xl font-semibold tracking-tight">
+              From pallet to first pull-up in an afternoon.
+            </h2>
           </div>
-          <h2 className="mt-3 text-balance text-4xl md:text-5xl font-semibold tracking-tight">
-            From pallet to first pull-up in an afternoon.
-          </h2>
-        </div>
+        </Reveal>
 
         <ol className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {steps.map((s) => (
-            <li
+          {steps.map((s, i) => (
+            <Reveal
               key={s.n}
+              as="li"
+              delay={i * 0.1}
               className="relative rounded-2xl border border-border p-8 transition-colors hover:border-accent/40"
             >
               <div className="text-xs font-mono text-accent">{s.n}</div>
@@ -51,7 +57,7 @@ export function Install() {
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
                 {s.body}
               </p>
-            </li>
+            </Reveal>
           ))}
         </ol>
       </div>

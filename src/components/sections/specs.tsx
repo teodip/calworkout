@@ -1,3 +1,6 @@
+import Image from "next/image";
+import { Reveal } from "@/components/reveal";
+
 const rows: { label: string; value: string }[] = [
   { label: "Footprint", value: "3.2m × 1.8m (10'6\" × 5'11\")" },
   { label: "Height", value: "2.6m (8'6\")" },
@@ -17,30 +20,49 @@ export function Specs() {
       <div className="mx-auto max-w-7xl px-6 py-24">
         <div className="grid gap-12 lg:grid-cols-3">
           <div className="lg:sticky lg:top-24 lg:self-start">
-            <div className="text-xs uppercase tracking-widest text-muted-foreground">
-              Engineering
-            </div>
-            <h2 className="mt-3 text-balance text-4xl md:text-5xl font-semibold tracking-tight">
-              Specs that don&apos;t flex.
-            </h2>
-            <p className="mt-6 text-muted-foreground max-w-md">
-              Every measurement is published. Every weld is logged. Download the
-              full engineering pack with stress-test data and CAD files.
-            </p>
-            <a
-              href="#"
-              className="mt-6 inline-flex items-center gap-2 text-sm text-accent hover:underline"
-            >
-              Download spec sheet (PDF)
-              <span aria-hidden>↓</span>
-            </a>
+            <Reveal>
+              <div className="text-xs uppercase tracking-widest text-muted-foreground">
+                Engineering
+              </div>
+              <h2 className="mt-3 text-balance text-4xl md:text-5xl font-semibold tracking-tight">
+                Specs that don&apos;t flex.
+              </h2>
+              <p className="mt-6 text-muted-foreground max-w-md">
+                Every measurement is published. Every weld is logged. Download
+                the full engineering pack with stress-test data and CAD files.
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <div className="relative mt-8 aspect-[4/3] w-full overflow-hidden rounded-2xl border border-border bg-background">
+                <Image
+                  src="/product/aerial.png"
+                  alt="Aerial view of the rig showing full footprint"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 33vw"
+                  className="object-cover"
+                />
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.15}>
+              <a
+                href="#"
+                className="mt-6 inline-flex items-center gap-2 text-sm text-accent hover:underline"
+              >
+                Download spec sheet (PDF)
+                <span aria-hidden>↓</span>
+              </a>
+            </Reveal>
           </div>
 
           <div className="lg:col-span-2">
             <dl className="divide-y divide-border rounded-2xl border border-border bg-background overflow-hidden">
-              {rows.map((row) => (
-                <div
+              {rows.map((row, i) => (
+                <Reveal
                   key={row.label}
+                  as="div"
+                  delay={i * 0.04}
                   className="grid grid-cols-3 gap-4 px-6 py-5"
                 >
                   <dt className="col-span-1 text-xs uppercase tracking-widest text-muted-foreground self-center">
@@ -49,7 +71,7 @@ export function Specs() {
                   <dd className="col-span-2 font-medium tracking-tight">
                     {row.value}
                   </dd>
-                </div>
+                </Reveal>
               ))}
             </dl>
           </div>
